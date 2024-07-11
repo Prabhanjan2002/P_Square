@@ -47,7 +47,7 @@ const UserPost = ({ postImg, postTitle, likes, replies }) => {
         <Flex flex={1} flexDirection={"column"} gap={2}>
           <Flex justifyContent={"space-between"} w={"full"}>
             <Flex w={"full"} alignItems={"center"}>
-              <Text fontsize={"sm"} fontWeight={"bold"}>
+              <Text fontSize={"sm"} fontWeight={"bold"}>
                 markzukerberg
               </Text>
               <Image src="/verified.png" w={4} h={4} ml={1} />
