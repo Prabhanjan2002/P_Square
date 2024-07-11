@@ -1,0 +1,4 @@
+npm init -y
+npm install express jsonwebtoken bcryptjs dotenv mongoose cookie-parser
+npm install -D nodemon
+npm run dev
