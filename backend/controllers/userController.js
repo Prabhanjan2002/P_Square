@@ -11,7 +11,7 @@ const getUserProfile = async (req, res) => {
     if (!user) return res.status(400).json({ message: "user not found" });
     res.status(200).json(user);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
     console.log("Error on getUserProfile", error.message);
   }
 };
@@ -22,7 +22,7 @@ const signupUser = async (req, res) => {
     const user = await User.findOne({ $or: [{ email }, { username }] });
 
     if (user) {
-      return res.status(400).json({ message: "user already exists" });
+      return res.status(400).json({ error: "user already exists" });
     }
     const salt = await bcrypt.genSalt(10);
     const hashedpassword = await bcrypt.hash(password, salt);
@@ -42,10 +42,10 @@ const signupUser = async (req, res) => {
         username: newUser.username,
       });
     } else {
-      res.status(400).json({ message: "invalid user data" });
+      res.status(400).json({ error: "invalid user data" });
     }
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
     console.log("error in signup: ", error.message);
   }
 };
@@ -60,7 +60,7 @@ const loginUser = async (req, res) => {
     ); ////user?.password it means if user not found then it will return false then in the end empty string means if no user founf=d the password is compared with null string
 
     if (!user || !isPasswordCorrect)
-      return res.status(400).json({ message: "Invalid username or password" });
+      return res.status(400).json({ error: "Invalid username or password" });
     generateTokenAndSetCookies(user._id, res);
     res.status(200).json({
       _id: user._id,
@@ -69,7 +69,7 @@ const loginUser = async (req, res) => {
       username: user.username,
     });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
     console.log("error in loginUser", error.message);
   }
 };
@@ -79,7 +79,7 @@ const logoutUser = async (req, res) => {
     res.cookie("jwt", "", { maxlen: 1 });
     res.status(200).json({ message: "user logged out successfully" });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
     console.log("Error in logout", error.message);
   }
 };
@@ -143,7 +143,7 @@ const updateUser = async (req, res) => {
     user = await user.save();
     res.status(200).json({ message: "profile updated successfully", user });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({ error: error.message });
     console.log("Error in the updateUser", error.message);
   }
 };
