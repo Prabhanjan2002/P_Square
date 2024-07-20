@@ -2,6 +2,7 @@ import { Button } from "@chakra-ui/button";
 import { useSetRecoilState } from "recoil";
 import userAtom from "../atoms/userAtom";
 import useShowToast from "../hooks/useShowToast";
+import { IoLogOutOutline } from "react-icons/io5";
 
 const LogoutButton = () => {
   const setUser = useSetRecoilState(userAtom);
@@ -33,7 +34,7 @@ const LogoutButton = () => {
       size={"sm"}
       onClick={handleLogout}
     >
-      Logout
+      <IoLogOutOutline size={20} />
     </Button>
   );
 };
