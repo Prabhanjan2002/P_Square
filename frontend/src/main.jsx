@@ -33,6 +33,7 @@ const colors = {
 const theme = extendTheme({ config, styles, colors });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+  //react strict mode render every component twice
   <React.StrictMode>
     <RecoilRoot>
       <BrowserRouter>
